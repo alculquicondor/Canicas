@@ -15,11 +15,7 @@ public class DragAndMove : MonoBehaviour {
 
 	void OnMouseDown(){
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		bool hit = Physics.Raycast (ray.origin, ray.direction, out rayHitStart);
-		if (hit) {
-			Debug.Log("START:");
-			Debug.Log(rayHitStart.point);
-		}
+		Physics.Raycast (ray.origin, ray.direction, out rayHitStart);
 		rb.useGravity = false;
 	}
 	void OnMouseDrag(){
@@ -38,12 +34,6 @@ public class DragAndMove : MonoBehaviour {
 				rayHitStart.point.x - rayHitEnd.point.x,
 				0,
 				rayHitStart.point.z - rayHitEnd.point.z);
-
-			Debug.Log("End:");
-			Debug.Log(rayHitEnd.point);
-			Debug.Log("Movement:");
-			Debug.Log(movement);
-
 			
 			rb.AddForce(movement * speed);
 

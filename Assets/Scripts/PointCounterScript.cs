@@ -18,7 +18,6 @@ public class PointCounterScript : MonoBehaviour {
 	void LateUpdate () {
 		float dist = Vector3.Distance (new Vector3 (0, 0, 0), transform.position);
 		if(!counted){
-			Debug.Log (dist);
 			if(dist > pointRadius){
 				gameScore = gameScore + 1;
 				UpdateScore();
