@@ -7,6 +7,7 @@ public class PointCounterScript : MonoBehaviour {
 	public Text scoreText;
 	private bool counted;
 	public static int gameScore;
+	public float pointRadius;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,7 @@ public class PointCounterScript : MonoBehaviour {
 		float dist = Vector3.Distance (new Vector3 (0, 0, 0), transform.position);
 		if(!counted){
 			Debug.Log (dist);
-			if(dist > 3){
+			if(dist > pointRadius){
 				gameScore = gameScore + 1;
 				UpdateScore();
 				counted = true;
