@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 	public GameObject player;
+	public static int gameScore;
 	public float speed;
 
 	private float radioOffset, heightOffset, angle;
@@ -13,6 +14,7 @@ public class CameraController : MonoBehaviour {
 		radioOffset = Mathf.Sqrt(offset.x * offset.x + offset.z * offset.z);
 		heightOffset = offset.y;
 		angle = Mathf.PI;
+		gameScore = 0;
 	}
 
 	void FixedUpdate() {
