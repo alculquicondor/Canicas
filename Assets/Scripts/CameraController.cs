@@ -5,8 +5,9 @@ public class CameraController : MonoBehaviour {
 
 	public GameObject player;
 	public static int gameScore;
+	public float speed;
 
-	public float radioOffset, heightOffset, angle;
+	private float radioOffset, heightOffset, angle;
 
 	void Start () {
 		Vector3 offset = transform.position - player.transform.position;
@@ -17,7 +18,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		angle += Input.GetAxis ("Horizontal") * 7e-3f;
+		angle += Input.GetAxis ("Horizontal") * speed;
 	}
 	
 	void LateUpdate () {
