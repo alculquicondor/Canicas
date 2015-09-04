@@ -20,11 +20,19 @@ public class DragAndMove : MonoBehaviour {
 			Debug.Log("START:");
 			Debug.Log(rayHitStart.point);
 		}
+		rb.useGravity = false;
+	}
+	void OnMouseDrag(){
+		transform.position = new Vector3 (
+			transform.position.x,
+			transform.position.y + 0.01f,
+			transform.position.z);
 	}
 
 	void OnMouseUp(){
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		bool hit = Physics.Raycast (ray.origin, ray.direction, out rayHitEnd);
+		rb.useGravity = true;
 		if (hit) {
 			Vector3 movement = new Vector3(
 				rayHitStart.point.x - rayHitEnd.point.x,
