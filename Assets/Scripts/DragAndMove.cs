@@ -46,7 +46,7 @@ public class DragAndMove : MonoBehaviour {
 
 	void LateUpdate () {
 		if (Vector3.Magnitude(transform.position) < radius &&
-		    Vector3.Magnitude(rb.velocity) < .1f) {
+		    Vector3.Magnitude(rb.velocity) < 1f) {
 			trapped = true;
 		}
 	}
