@@ -4,14 +4,15 @@ using System.Collections;
 
 public class PointCounterScript : MonoBehaviour {
 
-	public Text scoreText;
-	private bool counted;
-	public static int gameScore;
 	public float pointRadius;
+
+	private GoalController goal;
+	private bool counted;
 
 	// Use this for initialization
 	void Start () {
 		counted = false;
+		goal = (GoalController) FindObjectOfType(typeof(GoalController));
 	}
 	
 	// Update is called once per frame
@@ -19,13 +20,9 @@ public class PointCounterScript : MonoBehaviour {
 		float dist = Vector3.Distance (new Vector3 (0, 0, 0), transform.position);
 		if(!counted){
 			if(dist > pointRadius){
-				gameScore = gameScore + 1;
-				UpdateScore();
+				goal.gameScore += 1;
 				counted = true;
 			}
 		} 
-	}
-	void UpdateScore(){
-		scoreText.text = "Score: " + gameScore.ToString ();
 	}
 }

@@ -3,6 +3,9 @@ using System.Collections;
 
 public class DragAndMove : MonoBehaviour {
 
+	public float radius;
+	public bool trapped;
+
 	private RaycastHit rayHitStart;
 	private RaycastHit rayHitEnd;
 	private Rigidbody rb;
@@ -11,6 +14,7 @@ public class DragAndMove : MonoBehaviour {
 
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		trapped = false;
 	}
 
 	void OnMouseDown(){
@@ -39,7 +43,11 @@ public class DragAndMove : MonoBehaviour {
 
 		}
 	}
-	void Update () {
 
+	void LateUpdate () {
+		if (Vector3.Magnitude(transform.position) < radius &&
+		    Vector3.Magnitude(rb.velocity) < .1f) {
+			trapped = true;
+		}
 	}
 }
