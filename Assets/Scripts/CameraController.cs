@@ -7,7 +7,9 @@ public class CameraController : MonoBehaviour {
 	public static int gameScore;
 	public float speed;
 
-	private float radioOffset, heightOffset, angle;
+	private float radioOffset, heightOffset, angle,
+		          startingAngle, startingMouseX;
+	private bool movingCamera;
 
 	void Start () {
 		Vector3 offset = transform.position - player.transform.position;
@@ -15,12 +17,23 @@ public class CameraController : MonoBehaviour {
 		heightOffset = offset.y;
 		angle = Mathf.PI;
 		gameScore = 0;
+		movingCamera = false;
 	}
 
-	void FixedUpdate() {
-		angle += Input.GetAxis ("Horizontal") * speed;
+	void Update () {
+		if (Input.GetMouseButtonDown(1)) {
+			movingCamera = true;
+			startingAngle = angle;
+			startingMouseX = Input.mousePosition.x;
+		}
+		if (movingCamera) {
+			angle = startingAngle + (Input.mousePosition.x - startingMouseX) * speed;
+		}
+		if (movingCamera && Input.GetMouseButtonUp(1)) {
+			movingCamera = false;
+		}
 	}
-	
+
 	void LateUpdate () {
 		transform.position = player.transform.position +
 			new Vector3(Mathf.Sin (angle) * radioOffset,
